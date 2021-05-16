@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renting/Screens/MyCustomForm.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //import '../Home.dart';
 
 class MyApp extends StatefulWidget {
@@ -23,18 +24,45 @@ class _MyAppState extends State<MyApp> {
 
   _MyAppState(this.l);
 
+  addStringToSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('stringValue', "dhurbal");
+  }
+
+  getStringValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String stringValue = prefs.getString('stringValue');
+    print(stringValue);
+  }
+
+  Widget getEmpty(BuildContext context) {
+    return Icon(Icons.ac_unit);
+  }
+
+  Widget getFull(BuildContext context) {
+    return ListView.builder(
+        itemCount: l.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            // leading: Image.asset(
+            //   l[index].photoPath,
+            //   height: 200.0,
+            //   width: 200.0,
+            //   errorBuilder: (BuildContext context, Object exception,
+            //       StackTrace stackTrace) {
+            //     return Text("error occured");
+            //   },
+            // ),
+            title: Text(l[index].address),
+            subtitle: Text(l[index].owner),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // if (l.isEmpty == true) {
-    //   return MaterialApp(
-    //     home: Scaffold(
-    //       body: Center(
-    //         child: Icon(Icons.ac_unit),
-    //       ),
-    //     ),
-    //   );
-    // }
-
+    //addStringToSF();
+    //if (l.isEmpty == true) {
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -47,23 +75,7 @@ class _MyAppState extends State<MyApp> {
           },
         ),
         body: Center(
-          child: ListView.builder(
-              itemCount: l.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  // leading: Image.asset(
-                  //   l[index].photoPath,
-                  //   height: 200.0,
-                  //   width: 200.0,
-                  //   errorBuilder: (BuildContext context, Object exception,
-                  //       StackTrace stackTrace) {
-                  //     return Text("error occured");
-                  //   },
-                  // ),
-                  title: Text(l[index].address),
-                  subtitle: Text(l[index].owner),
-                );
-              }),
+          child: l.isEmpty ? getEmpty(context) : getFull(context),
         ),
       ),
     );

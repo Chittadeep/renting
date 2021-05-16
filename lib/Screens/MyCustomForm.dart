@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:renting/Home.dart';
 import 'package:renting/Screens/MyApp.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class MyCustomForm extends StatelessWidget {
   List l;
@@ -9,6 +10,7 @@ class MyCustomForm extends StatelessWidget {
   var address = TextEditingController();
   var phone = TextEditingController();
   var amount = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
