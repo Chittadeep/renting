@@ -4,8 +4,7 @@ import 'package:renting/Screens/MyApp.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
 class MyCustomForm extends StatelessWidget {
-  List l;
-  MyCustomForm(this.l);
+  MyCustomForm();
   var name = TextEditingController();
   var address = TextEditingController();
   var phone = TextEditingController();
@@ -48,12 +47,9 @@ class MyCustomForm extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    l.add(Home(address.text, name.text, phone.text, "photoPath",
-                        double.parse(amount.text)));
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyApp(l)),
-                    );
+                    Home home = (Home(address.text, name.text, phone.text,
+                        "photoPath", double.parse(amount.text)));
+                    Navigator.pop(context, home);
                   },
                   child: Text("Submit"))
             ],

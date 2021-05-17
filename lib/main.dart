@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:renting/Home.dart';
 import 'Screens/MyApp.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
-//import 'Screens/MyCustomForm.dart';
+import 'Screens/MyCustomForm.dart';
 
 void main() {
   List L = [];
@@ -17,6 +17,6 @@ void main() {
 
   runApp(MaterialApp(
     title: 'Your title',
-    home: MyApp(L),
+    home: MyApp(),
   ));
 }
