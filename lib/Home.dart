@@ -8,11 +8,20 @@ class Home {
   Home(
       this.address, this.owner, this.phoneNumber, this.photoPath, this.monthly);
 
-  Home.fromMap(Map<String, dynamic> json) {
-    this.address = json['address'];
-    this.owner = json['owner'];
-    this.phoneNumber = json['phoneNumber'];
-    this.photoPath = json['photoPath'];
-    this.monthly = json['monthly'];
+  factory Home.fromMap(Map<String, dynamic> json) {
+    return Home(
+        json['address'] as String,
+        json['owner'] as String,
+        json['phoneNumber'] as String,
+        json['photoPath'] as String,
+        json['monthly'] as double);
+        }
+
+    Map<String, dynamic> toJson() => {
+          'address': this.address,
+          'owner': this.owner,
+          'phoneNumber': this.phoneNumber,
+          'photoPath': this.photoPath,
+          'monthly': this.monthly
+        };
   }
-}
