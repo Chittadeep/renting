@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:renting/Screens/Details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Home.dart';
@@ -35,6 +36,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
+            appBar: AppBar(title: Text("Covid Tracker"), actions: [
+              Column(mainAxisSize: MainAxisSize.max, children: [
+                Text(
+                  'Created by \nChittadeep Biswas',
+                )
+              ])
+            ]),
             floatingActionButton: FloatingActionButton(
                 child: Icon(Icons.add),
                 onPressed: () {
@@ -53,6 +61,13 @@ class _MyAppState extends State<MyApp> {
                             itemCount: l.length,
                             itemBuilder: (context, index) {
                               return ListTile(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Details(
+                                                home: Home.fromMap(l[index]))));
+                                  },
                                   title: Text(l[index]['owner']),
                                   subtitle: Text(l[index]['address']));
                             }));

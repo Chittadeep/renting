@@ -8,7 +8,7 @@ class Home {
   Home(
       this.address, this.owner, this.phoneNumber, this.photoPath, this.monthly);
 
-  factory Home.fromMap(Map<String, dynamic> json) {
+  factory Home.fromMap(dynamic json) {
     return Home(
         json['address'] as String,
         json['owner'] as String,
